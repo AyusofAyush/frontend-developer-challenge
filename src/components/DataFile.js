@@ -6,7 +6,7 @@ const data = {
   "body": [{
     "name": "Auto Chess 1",
     "region": "US",
-    "createdOn": 1575138600000,
+    "createdOn": 1592977467208,
     "price": 23,
     "csv": "Some CSV link for Auto Chess",
     "report": "Some report link for Auto Chess",
@@ -15,7 +15,7 @@ const data = {
   {
     "name": "Auto Chess 2",
     "region": "US",
-    "createdOn": 1576789010000,
+    "createdOn": 1591681467208,
     "price": 23,
     "csv": "Some CSV link for Auto Chess",
     "report": "Some report link for Auto Chess",
@@ -24,16 +24,16 @@ const data = {
   {
     "name": "PUBG MOBILE",
     "region": "CH",
-    "createdOn": 1575397800000,
+    "createdOn": 1592028584617,
     "price": 120,
     "csv": "Some CSV link for PUBG MOBILE",
     "report": "Some report link for PUBG MOBILE",
     "image_url": "G5.png"
   },
   {
-    "name": "PUBG MOBILE",
+    "name": "PUBG MOBILE 2",
     "region": "CH",
-    "createdOn": 1576397800000,
+    "createdOn": 1591830637208,
     "price": 120,
     "csv": "Some CSV link for PUBG MOBILE",
     "report": "Some report link for PUBG MOBILE",
@@ -42,7 +42,7 @@ const data = {
   {
     "name": "Flow Free",
     "region": "FR",
-    "createdOn": 1574879400000,
+    "createdOn": 1592286267208,
     "price": 40,
     "csv": "Some CSV link for Flow Free",
     "report": "Some report link for Flow Free",
@@ -51,7 +51,7 @@ const data = {
   {
     "name": "Flow Free 2",
     "region": "FR",
-    "createdOn": 1576987653000,
+    "createdOn": 1591767867208,
     "price": 40,
     "csv": "Some CSV link for Flow Free",
     "report": "Some report link for Flow Free",
@@ -60,7 +60,7 @@ const data = {
   {
     "name": "Garena Free Fire",
     "region": "CH",
-    "createdOn": 1575397785000,
+    "createdOn": 1592940617208,
     "price": 110,
     "csv": "Some CSV link for Garena Free Fire",
     "report": "Some report link for Garena Free Fire",
@@ -69,7 +69,7 @@ const data = {
   {
     "name": "MORTAL KOMBAT 2",
     "region": "US",
-    "createdOn": 1575684200000,
+    "createdOn": 1592028584617,
     "price": 200,
     "csv": "Some CSV link for MORTAL KOMBAT",
     "report": "Some report link for MORTAL KOMBAT",
@@ -78,7 +78,7 @@ const data = {
   {
     "name": "MORTAL KOMBAT 3",
     "region": "US",
-    "createdOn": 1575284200000,
+    "createdOn": 1592631867208,
     "price": 200,
     "csv": "Some CSV link for MORTAL KOMBAT",
     "report": "Some report link for MORTAL KOMBAT",
@@ -87,7 +87,7 @@ const data = {
   {
     "name": "Summoners War",
     "region": "US",
-    "createdOn": 1576261800000,
+    "createdOn": 1592459067208,
     "price": 90,
     "csv": "Some CSV link for Summoners War",
     "report": "Some report link for Summoners War",
@@ -96,7 +96,7 @@ const data = {
   {
     "name": "Summoners War 3",
     "region": "US",
-    "createdOn": 1575161800000,
+    "createdOn": 1591820627208,
     "price": 90,
     "csv": "Some CSV link for Summoners War",
     "report": "Some report link for Summoners War",
@@ -105,7 +105,7 @@ const data = {
   {
     "name": "Need for Speed No Limits",
     "region": "US",
-    "createdOn": 1575829800000,
+    "createdOn": 1592070267208,
     "price": 500,
     "csv": "Some CSV link for Need for Speed No Limits",
     "report": "Some report link for Need for Speed No Limits",
@@ -114,7 +114,7 @@ const data = {
   {
     "name": "Shadow Fight 2",
     "region": "JP",
-    "createdOn": 1575570600000,
+    "createdOn": 1591335867208,
     "price": 60,
     "csv": "Some CSV link for Shadow Fight 3",
     "report": "Some report link for Shadow Fight 3",
@@ -123,7 +123,7 @@ const data = {
   {
     "name": "Need for Speed No Limits",
     "region": "FR",
-    "createdOn": 1575570502000,
+    "createdOn": 1592027067206,
     "price": 60,
     "csv": "Some CSV link for Shadow Fight 3",
     "report": "Some report link for Shadow Fight 3",

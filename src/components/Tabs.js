@@ -23,11 +23,11 @@ class ControlledTabs extends React.Component {
     // click handler which handles everytime clicked on the tabs
     handleClick(event) {
         this.setState({ active: event.target.title });
-        let d = new Date('December 4, 2019'); // static date
+        let d = new Date(); // static date
         let milsec = d.getTime();
         if (event.target.title === 'upcoming') {
             const updatedData = this.state.original.map(item => {
-                if (parseInt(item['createdOn']) > milsec) {
+                if ((parseInt(item['createdOn']) - milsec)> 86400000) {
                     return item;
                 }
             }).filter(Boolean);
@@ -35,7 +35,7 @@ class ControlledTabs extends React.Component {
             this.setState({ Updata: updatedData });
         } else if (event.target.title === 'live') {
             const updatedData = this.state.original.map(item => {
-                if (Math.abs(parseInt(item['createdOn']) - milsec) <= 2 * 86400000) {
+                if ((parseInt(item['createdOn']) - milsec)>=0 && (parseInt(item['createdOn']) - milsec) <= 86400000) {
                     return item;
                 }
             }).filter(Boolean);
