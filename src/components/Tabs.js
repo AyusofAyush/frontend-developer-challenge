@@ -15,43 +15,72 @@ class ControlledTabs extends React.Component {
             Livedata: null,
             Pastdata: null,
             active: "",
+            today: new Date().getTime(),
 
         };
         this.handleClick = this.handleClick.bind(this);
+        this.updateTabs = this.updateTabs.bind(this);
+        this.updateMe = this.updateMe.bind(this);
+        this.whichData = this.whichData.bind(this);
     }
 
     // click handler which handles everytime clicked on the tabs
-    handleClick(event) {
-        this.setState({ active: event.target.title });
+
+    updateTabs() {
         let d = new Date(); // static date
         let milsec = d.getTime();
-        if (event.target.title === 'upcoming') {
-            const updatedData = this.state.original.map(item => {
-                if ((parseInt(item['createdOn']) - milsec)> 86400000) {
-                    return item;
-                }
-            }).filter(Boolean);
+        let upData = this.state.original.map(item => {
+            if ((parseInt(item['createdOn']) - milsec) > 86400000) {
+                return item;
+            }
+        }).filter(Boolean);
 
-            this.setState({ Updata: updatedData });
-        } else if (event.target.title === 'live') {
-            const updatedData = this.state.original.map(item => {
-                if ((parseInt(item['createdOn']) - milsec)>=0 && (parseInt(item['createdOn']) - milsec) <= 86400000) {
-                    return item;
-                }
-            }).filter(Boolean);
+        this.setState({ Updata: upData });
 
-            this.setState({ Livedata: updatedData });
+        let liveData = this.state.original.map(item => {
+            if ((parseInt(item['createdOn']) - milsec) >= 0 && (parseInt(item['createdOn']) - milsec) <= 86400000) {
+                return item;
+            }
+        }).filter(Boolean);
 
-        } else {
-            const updatedData = this.state.original.map(item => {
-                if (parseInt(item['createdOn']) < milsec) {
-                    return item;
-                }
-            }).filter(Boolean);
+        this.setState({ Livedata: liveData });
 
-            this.setState({ Pastdata: updatedData });
-        }
+        let pastData = this.state.original.map(item => {
+            if (parseInt(item['createdOn']) < milsec) {
+                return item;
+            }
+        }).filter(Boolean);
+
+        this.setState({ Pastdata: pastData });
     }
+
+
+    handleClick(event) {
+        this.setState({ active: event.target.title });
+        this.updateTabs();
+    }
+
+    whichData = () => {
+        return this.state.active === 'upcoming' ? this.state.Updata :
+        this.state.active === 'live' ? this.state.Livedata :
+            this.state.active === 'past'? this.state.Pastdata: null;
+    }
+
+    updateMe = () => {
+        let d = new Date(this.props.date).getTime() + 5.5*(3600000); // for Indian time Zone
+        if (this.state.today !== this.props.date) {
+            this.setState({ today: this.props.date });
+            let updated = this.state.original.map(item => {
+                if (item['name'] === this.props.param)
+                    item['createdOn'] = d;
+                return item;
+            }).filter(Boolean);
+            this.setState({ original: updated });
+            this.updateTabs();
+            this.whichData();
+        }
+        return null;
+    };
 
     style1 = {
         color: "#82a523",
@@ -61,29 +90,16 @@ class ControlledTabs extends React.Component {
 
 
     render() {
-        console.log(this.props.param, this.props.update, this.props.date);
-        let d = new Date(this.props.date).getTime();
-        console.log(d);
+        // console.log(this.props.param,this.props.update,this.props.date);
+        let d = new Date(this.props.date).getTime() + 5.5*(3600000); // for Indian time Zone
+        // console.log(d);
 
-        const whichData = this.state.active === 'upcoming' ? this.state.Updata :
-            this.state.active === 'live' ? this.state.Livedata :
-                this.state.Pastdata;
-
-        let updated;
-        if (whichData !== null) {
-            updated = whichData.map(item => {
-                if (item['name'] === this.props.param)
-                    item['createdOn'] = d;
-                return item;
-            }).filter(Boolean);
-        }
-
-        const upcom = this.props.lang === 'en'?'Upcoming Campaigns':
-        'Kommende Kampagnen';
-        const livecom = this.props.lang === 'en'?'Live Compaigns':
-        'Live-Kampagnen';
-        const pastcom = this.props.lang === 'en'?'Past Compaigns':
-        'Vergangene Kampagnen';
+        const upcom = this.props.lang === 'en' ? 'Upcoming Campaigns' :
+            'Kommende Kampagnen';
+        const livecom = this.props.lang === 'en' ? 'Live Compaigns' :
+            'Live-Kampagnen';
+        const pastcom = this.props.lang === 'en' ? 'Past Compaigns' :
+            'Vergangene Kampagnen';
 
 
         // console.log(updated);
@@ -118,7 +134,8 @@ class ControlledTabs extends React.Component {
                     {pastcom}</button>
                 <br />
                 <br />
-                <Table data={whichData !== null ? updated : null} lang={this.props.lang}/>
+                {this.updateMe()}
+                <Table data={this.whichData()} lang={this.props.lang} />
             </div>
         );
     }

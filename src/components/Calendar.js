@@ -4,15 +4,6 @@ import CaLendar from 'react-calendar';
 import ControlledTabs from './Tabs';
 
 // this component handles the calender of the web page .
-/*
-    Upart from the component 
-    there is a improvement to make 
-    it does not handles the schedule date properly due to an
-    Error: maximum render stack exceeded 
-    I tried but unable to handle that problem
-    The problem still exists, you can check the state is easily 
-    manipulated but setstate resets what props we were getting from the Calendar component.
-*/
 
 class Calendar extends React.Component {
     constructor(props) {
@@ -31,9 +22,15 @@ class Calendar extends React.Component {
         this.setState({ update: true });
     }
     handleClick = () => {
-        this.setState({ view: true });
+        this.setState(prevState => {
+            return {
+                view: !prevState.view
+            }
+        });
         this.setState({ update: false });
     }
+
+
     render() {
         const activeView = this.state.view;
         const renderCal = () => {
@@ -46,13 +43,13 @@ class Calendar extends React.Component {
         const someUpdate = this.state.update;
         const renderUpdate = () => {
             if (someUpdate) {
-                return <ControlledTabs param={this.props.item['name']} 
+                return <div><ControlledTabs param={this.props.item['name']} 
                 update={this.state.update}
                 date={this.state.date} />
+                </div>
             }
             return null;
         }
-        // console.log(this.props.item['time']);
         return (
             <div>
                 <img alt='calendar' className="ml-5" src={require('../Assets/calendar.png')}

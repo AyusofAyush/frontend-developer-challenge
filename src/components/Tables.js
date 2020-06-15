@@ -21,7 +21,7 @@ class table extends React.Component {
     }
 
     render() {
-        console.log('tables ', this.props.lang);
+        // console.log('tables ', this.props.lang);
         let d = new Date();
         let milsec = d.getTime();
         this.prettyDate = this.prettyDate.bind(this);

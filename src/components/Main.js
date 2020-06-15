@@ -25,7 +25,7 @@ class Main extends React.Component {
                         style={{ color: "#2b416c" }}><b>Manage Compaigns</b></h1>
                     <DropdownButton id="dropdown-item-button" variant="success" title="Language">
                         <Dropdown.Item onClick={this.handleClick} as="button" title="en" >ENG</Dropdown.Item>
-                        <Dropdown.Item onClick={this.handleClick} as="button" title="gr" >GER</Dropdown.Item>
+                        <Dropdown.Item onClick={this.handleClick} as="button" title="de" >GER</Dropdown.Item>
                     </DropdownButton>
                 </div>
                 <br />
