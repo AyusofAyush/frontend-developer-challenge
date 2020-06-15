@@ -1,6 +1,8 @@
 import React from 'react';
 import Tables from './Tables';
 
+// Tab manager is actually managing the tab data which needs to be rendered 
+// tab is refreshed once you click again.
 
 class TabManager extends React.Component {
     render() {

@@ -12,6 +12,7 @@ class Calendar extends React.Component {
             date: new Date(),
             view: false,
             update: false,
+            param: "",
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -28,6 +29,7 @@ class Calendar extends React.Component {
             }
         });
         this.setState({ update: false });
+        this.setState({param: this.props.item['name']});
     }
 
 
@@ -43,7 +45,7 @@ class Calendar extends React.Component {
         const someUpdate = this.state.update;
         const renderUpdate = () => {
             if (someUpdate) {
-                return <div><ControlledTabs param={this.props.item['name']} 
+                return <div><ControlledTabs key={this.state.update} param={this.state.param} 
                 update={this.state.update}
                 date={this.state.date} />
                 </div>
