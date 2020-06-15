@@ -1,11 +1,11 @@
 import React from 'react';
-import { Table, ButtonGroup, Button } from 'react-bootstrap';
+import { Table, ButtonGroup } from 'react-bootstrap';
 import Price from './PriceModel';
 import Calendar from './Calendar';
 
 // Component responsible for table of the webpage
 
-class table extends React.Component {
+class tables extends React.Component {
 
     // to get date in defined format
     prettyDate(date) {
@@ -87,5 +87,5 @@ class table extends React.Component {
     }
 }
 
-export default table;
+export default tables;
 

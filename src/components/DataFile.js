@@ -1,4 +1,3 @@
-import React from 'react';
 
 // demo json file which is used through out this project
 
