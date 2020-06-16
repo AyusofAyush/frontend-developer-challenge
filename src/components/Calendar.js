@@ -18,6 +18,8 @@ class Calendar extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleChange = date => {
+        const time = new Date(date).getTime();
+        this.props.updatedData(time, this.props.item);
         this.setState({ date: date });
         this.setState({ view: false });
         this.setState({ update: true });

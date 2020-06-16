@@ -74,7 +74,7 @@ class tables extends React.Component {
                                     <img alt='report' className="ml-5" src={require('../Assets/statistics-report.png')}
                                         style={{ width: "2.2em", height: "2.2em", float: "left" }} />
                                     <p className="ml-2 mx-0 my-0"> Report</p>
-                                    <Calendar item={{ name: item['name'], time: item['createdOn'] }} />
+                                    <Calendar item={{ name: item['name'], time: item['createdOn'] }} updatedData={this.props.updatedData} />
                                 </ButtonGroup>
 
                                 </td>

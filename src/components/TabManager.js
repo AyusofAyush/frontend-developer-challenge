@@ -5,23 +5,39 @@ import Tables from './Tables';
 // tab is refreshed once you click again.
 
 class TabManager extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            campaignJson: props.data
+        };
+        this.updateData = this.updateData.bind(this)
+    }
+    updateData(d, item) {
+        const campaignData = this.state.campaignJson.map(data => {
+            if (data['name'] === item['name']) {
+                return {...data, createdOn: d}
+            }
+            return data;
+        });
+        this.setState({campaignJson: campaignData});
+    }
     render() {
 
         let d = new Date(); // static date
         let milsec = d.getTime();
-        let upData = this.props.data.map(item => {
+        let upData = this.state.campaignJson.map(item => {
             if ((parseInt(item['createdOn']) - milsec) > 86400000) {
                 return item;
             } return null;
         }).filter(Boolean);
 
-        let liveData = this.props.data.map(item => {
+        let liveData = this.state.campaignJson.map(item => {
             if ((parseInt(item['createdOn']) - milsec) >= 0 && (parseInt(item['createdOn']) - milsec) <= 86400000) {
                 return item;
             } return null;
         }).filter(Boolean);
 
-        let pastData = this.props.data.map(item => {
+        let pastData = this.state.campaignJson.map(item => {
             if (parseInt(item['createdOn']) < milsec) {
                 return item;
             } return null;
@@ -32,7 +48,7 @@ class TabManager extends React.Component {
         this.props.activeState === 'past' ? pastData : null;
 
         return (
-            <Tables data={whichData} lang={this.props.lang} />
+            <Tables data={whichData} lang={this.props.lang} updatedData={this.updateData} />
         );
     };
 }
