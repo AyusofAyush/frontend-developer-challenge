@@ -23,7 +23,7 @@ class TabManager extends React.Component {
     }
     render() {
 
-        let d = new Date(); // static date
+        let d = new Date(); // today date updated
         let milsec = d.getTime();
         let upData = this.state.campaignJson.map(item => {
             if ((parseInt(item['createdOn']) - milsec) > 86400000) {
@@ -48,7 +48,7 @@ class TabManager extends React.Component {
         this.props.activeState === 'past' ? pastData : null;
 
         return (
-            <Tables data={whichData} lang={this.props.lang} updatedData={this.updateData} />
+            <Tables data={whichData} updatedData={this.updateData} />
         );
     };
 }

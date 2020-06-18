@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import CaLendar from 'react-calendar';
 import ControlledTabs from './Tabs';
+import Translator from './translator';
+import defaultMsg from './language/defaultMessages';
 
 // this component handles the calender of the web page .
 
@@ -18,7 +19,7 @@ class Calendar extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleChange = date => {
-        const time = new Date(date).getTime();
+        const time = new Date(date).getTime() + 5.5 * (3600000); // for Indian std Time
         this.props.updatedData(time, this.props.item);
         this.setState({ date: date });
         this.setState({ view: false });
@@ -58,9 +59,10 @@ class Calendar extends React.Component {
             <div>
                 <img alt='calendar' className="ml-5" src={require('../Assets/calendar.png')}
                     style={{ width: "2.5em", height: "2.5em", float: "left" }} />
-                <Button onClick={this.handleClick} variant="light" style={{ color: "#57698a", textDecoration: "none" }}
-                ><p className="ml-0 mx-0 my-0"> Schedule Again</p>
-                </Button>
+                <button onClick={this.handleClick} variant="light" style={{ background: "white", color: "#57698a", 
+                textDecoration: "none", border: "0.4em solid white", marginTop: "5px", fontSize: "0.9em"}}
+        ><p className="ml-0 mx-0 my-0"> {Translator('scheduleAgain',defaultMsg.msg.err)}</p>
+                </button>
                 {renderCal()}
                 <div style={{ display: "none" }}>
                     {renderUpdate()}

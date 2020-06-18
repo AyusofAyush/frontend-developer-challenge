@@ -2,17 +2,22 @@ import React from 'react';
 import { Table, ButtonGroup } from 'react-bootstrap';
 import Price from './PriceModel';
 import Calendar from './Calendar';
+import Translator from './translator';
+import defaultMsg from './language/defaultMessages';
 
 // Component responsible for table of the webpage
 
 class tables extends React.Component {
 
     // to get date in defined format
-    prettyDate(date) {
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    getMonth(date) {
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        return months[date.getUTCMonth()] + ' ' + date.getUTCFullYear() + ', ' + date.getUTCDate();
+        return months[date.getUTCMonth()];
+    }
+    prettyDate(date) {
+        
+        return ' ' + date.getUTCFullYear() + ', ' + date.getUTCDate();
     }
 
     // days from milliseconds
@@ -21,7 +26,6 @@ class tables extends React.Component {
     }
 
     render() {
-        // console.log('tables ', this.props.lang);
         let d = new Date();
         let milsec = d.getTime();
         this.prettyDate = this.prettyDate.bind(this);
@@ -32,48 +36,45 @@ class tables extends React.Component {
             )
         }
 
-        const day = this.props.lang === 'en' ? ' Days ' : ' Tage ';
-        const DATE = this.props.lang === 'en'?'DATE':'DATUM';
-        const COMPAIGN = this.props.lang === 'en'?'COMPAIGN':'KAMPAGNE';
-        const VIEW = this.props.lang === 'en'?'VIEW':'AUSSICHT';
-        const ACTIONS = this.props.lang === 'en'?'ACTIONS':'AKTIONEN';
         return (
             < div >
                 <Table responsive hover style={{ color: "#57698a", backgroundColor: "white", border: "1px solid lightgrey", tableLayout: "auto" }}>
                     <thead >
                         <tr style={{ backgroundColor: "#f1f1f4" }}>
-                            <th>{DATE}</th>
-                            <th>{COMPAIGN}</th>
-                            <th>{VIEW}</th>
-                            <th>{ACTIONS}</th>
+                            <th>{Translator('date',defaultMsg.msg.err)}</th>
+                            <th>{Translator('campaign',defaultMsg.msg.err)}</th>
+                            <th>{Translator('view',defaultMsg.msg.err)}</th>
+                            <th>{Translator('actions',defaultMsg.msg.err)}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.data.map((item, idx) => (
                             <tr key={idx}>
-                                <td>{this.prettyDate(new Date(parseInt(item['createdOn'])))}
+                                <td style={{fontSize: "0.95em"}} >{Translator(this.getMonth(new Date(parseInt(item['createdOn']))),defaultMsg.msg.err)}
+                                {this.prettyDate(new Date(parseInt(item['createdOn'])))}
                                     <br />
-                                    <sub><i>{this.DaysLeft(parseInt(item['createdOn']) - milsec)}{day}{this.props.lang === 'en' ? (item['createdOn'] - milsec >= 0 ? 'Ahead' : 'Ago') : (item['createdOn'] - milsec >= 0 ? 'Voraus' : 'Vor')}</i></sub>
+                                    <sub><i>{this.DaysLeft(parseInt(item['createdOn']) - milsec)} {Translator('days',defaultMsg.msg.err)}
+                                     {(item['createdOn'] - milsec >= 0 ? Translator('ahead',defaultMsg.msg.err) : Translator('ago',defaultMsg.msg.err)) }</i></sub>
                                 </td>
-                                <td style={{ width: "28%" }}>
+                                <td style={{ width: "24%" }}>
                                     <img alt='game_url' className="mr-3" src={require('../Assets/' + item['image_url'])}
                                         style={{ width: "3em", height: "3em", float: "left" }} />
                                     <div><p className="my-0"><b> {item['name']} </b></p>
                                         <sub> {item['region']} </sub> </div>
                                 </td>
-                                <td>
+                                <td style={{ width: "19%" }} >
                                     <Price item={{
                                         name: item['name'], region: item['region'], price: item['price'],
                                         image: item['image_url']
                                     }} />
                                 </td>
-                                <td> <ButtonGroup>
+                                <td style={{ width: "46%" }} > <ButtonGroup>
                                     <img alt='csv' className="mr-3" src={require('../Assets/file.png')}
                                         style={{ width: "2.2em", height: "2.2em", float: "left" }} />
                                     <p className="ml-1 mx-0 my-0"> CSV</p>
                                     <img alt='report' className="ml-5" src={require('../Assets/statistics-report.png')}
                                         style={{ width: "2.2em", height: "2.2em", float: "left" }} />
-                                    <p className="ml-2 mx-0 my-0"> Report</p>
+                                    <p className="ml-2 mx-0 my-0">{Translator('report',defaultMsg.msg.err)}</p>
                                     <Calendar item={{ name: item['name'], time: item['createdOn'] }} updatedData={this.props.updatedData} />
                                 </ButtonGroup>
 

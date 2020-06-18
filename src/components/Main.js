@@ -1,40 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ControlledTabs from './Tabs';
-import {DropdownButton, Dropdown} from 'react-bootstrap';
-
+import LanguageProvider from './language/LanguageProvider';
+import Translator from './translator';
+import defaultMsg from './language/defaultMessages';
 // This this is the main component of body after header
 
 
-class Main extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            lang: "en",
-        };
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick = (event) => this.setState({lang:event.target.title});
-
-    render() {
-        console.log(this.state.lang);
+function Main() {
         return (
+            <LanguageProvider><br/>
             <div>
                 <div className="container mr-auto pl-5">
                     <h1
-                        style={{ color: "#2b416c" }}><b>Manage Compaigns</b></h1>
-                    <DropdownButton id="dropdown-item-button" variant="success" title="Language">
-                        <Dropdown.Item onClick={this.handleClick} as="button" title="en" >ENG</Dropdown.Item>
-                        <Dropdown.Item onClick={this.handleClick} as="button" title="de" >GER</Dropdown.Item>
-                    </DropdownButton>
+                        style={{ color: "#2b416c" }}><b>{Translator('header',defaultMsg.msg.err)}</b></h1>
                 </div>
                 <br />
                 <div className="container mr-auto pl-5">
-                    <ControlledTabs lang={this.state.lang}/>
+                    <ControlledTabs />
                 </div>
             </div>
+            </LanguageProvider>
         );
-    }
 }
 
 

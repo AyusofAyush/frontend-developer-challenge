@@ -1,7 +1,8 @@
 import React from 'react';
 import data from './DataFile';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import TabManager from './TabManager';
+import Translator from './translator';
+import defaultMsg from './language/defaultMessages';
 
 // tabs components - 3 (upcoming, live, past) compaigns
 
@@ -46,12 +47,12 @@ class ControlledTabs extends React.Component {
                 return item;
             }).filter(Boolean);
 
-        const upcom = this.props.lang === 'en' ? 'Upcoming Campaigns' :
-            'Kommende Kampagnen';
-        const livecom = this.props.lang === 'en' ? 'Live Compaigns' :
-            'Live-Kampagnen';
-        const pastcom = this.props.lang === 'en' ? 'Past Compaigns' :
-            'Vergangene Kampagnen';
+        // const upcom = this.props.lang === 'en' ? 'Upcoming Campaigns' :
+        //     'Kommende Kampagnen';
+        // const livecom = this.props.lang === 'en' ? 'Live Compaigns' :
+        //     'Live-Kampagnen';
+        // const pastcom = this.props.lang === 'en' ? 'Past Compaigns' :
+        //     'Vergangene Kampagnen';
 
 
         // console.log(updated);
@@ -71,23 +72,26 @@ class ControlledTabs extends React.Component {
                     `}
                 </style>
                 <button title="upcoming" onClick={this.handleClick}
-                    style={this.state.active === 'upcoming' ? this.style1 : null}
+                   style={this.state.active === 'upcoming' ? this.style1 : null}
                     className="myTabs pl-1 pr-2 py-2" >
-                    {upcom}  </button>
+                    {Translator('upcoming',defaultMsg.msg.err)}
+                    </button>
                 <button onClick={this.handleClick}
                     title='live'
                     style={this.state.active === 'live' ? this.style1 : null}
                     className="myTabs pl-3 pr-2 py-2">
-                    {livecom} </button>
+                    {Translator('live',defaultMsg.msg.err)}
+                    </button>
                 <button onClick={this.handleClick}
                     title='past'
                     style={this.state.active === 'past' ? this.style1 : null}
                     className="myTabs pl-3 pr-2 py-2">
-                    {pastcom}</button>
+                    {Translator('past',defaultMsg.msg.err)}
+                    </button>
                 <br />
                 <br />
                 {/* <Table data={whichData} lang={this.props.lang} /> */}
-                <TabManager lang={this.props.lang} 
+                <TabManager
                 data={updated}
                 activeState={this.state.active}
                 
