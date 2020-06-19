@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ControlledTabs from './Tabs';
 import LanguageProvider from './language/LanguageProvider';
 import Translator from './translator';

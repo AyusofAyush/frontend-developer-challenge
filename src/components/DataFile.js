@@ -14,7 +14,7 @@ const data = {
   {
     "name": "Auto Chess 2",
     "region": "US",
-    "createdOn": 1591681467208,
+    "createdOn": 1593430776691,
     "price": 23,
     "csv": "Some CSV link for Auto Chess",
     "report": "Some report link for Auto Chess",
@@ -23,7 +23,7 @@ const data = {
   {
     "name": "PUBG MOBILE",
     "region": "CH",
-    "createdOn": 1592028584617,
+    "createdOn": 1592912516943,
     "price": 120,
     "csv": "Some CSV link for PUBG MOBILE",
     "report": "Some report link for PUBG MOBILE",
@@ -50,7 +50,7 @@ const data = {
   {
     "name": "Flow Free 2",
     "region": "FR",
-    "createdOn": 1591767867208,
+    "createdOn": 1592826116943,
     "price": 40,
     "csv": "Some CSV link for Flow Free",
     "report": "Some report link for Flow Free",
@@ -95,7 +95,7 @@ const data = {
   {
     "name": "Summoners War 3",
     "region": "US",
-    "createdOn": 1591820627208,
+    "createdOn": 1593344376691,
     "price": 90,
     "csv": "Some CSV link for Summoners War",
     "report": "Some report link for Summoners War",
@@ -113,7 +113,7 @@ const data = {
   {
     "name": "Shadow Fight 2",
     "region": "JP",
-    "createdOn": 1591335867208,
+    "createdOn": 1592739576691,
     "price": 60,
     "csv": "Some CSV link for Shadow Fight 3",
     "report": "Some report link for Shadow Fight 3",

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
-import { IntlProvider, FormattedMessage } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 // import Languages
 import English from '../translation/en.json';
@@ -31,14 +31,14 @@ export default function LanguageProvider(props) {
     return (
         <IntlProvider locale={locale} messages={lang}>
             <div className="container mr-auto pl-5" >
-            <DropdownButton id="dropdown-item-button" variant="success" title="Language">
-                        <Dropdown.Item 
-                        onClick={() => changeLang('en')} 
+                <DropdownButton id="dropdown-item-button" variant="success" title="Language">
+                    <Dropdown.Item
+                        onClick={() => changeLang('en')}
                         as="button" title="en">EN</Dropdown.Item>
-                        <Dropdown.Item 
-                        onClick={() => changeLang('de')} 
+                    <Dropdown.Item
+                        onClick={() => changeLang('de')}
                         as="button" title="de">DE</Dropdown.Item>
-                    </DropdownButton>
+                </DropdownButton>
             </div>
             <div>
                 {props.children}
